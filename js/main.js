@@ -1,12 +1,12 @@
 // Importações
 import { carregarDadosDasCirurgias } from './api.js';
-import { atualizarOrcamento } from './calcularConta.js';
+import { calcularValorComDesconto, atualizarOrcamento } from './calcularConta.js';
 import { mostrarDetalhes, configurarModal } from './detalhesModal.js';
 import { gerarPDF } from './gerarPdf.js';
 
 // Variáveis globais
 let todasCirurgias = [];
-let cirurgiasSelecionadas = [];
+let cirurgiasSelecionadas = []; // Array compartilhado com calcularConta.js
 
 // Função para criar IDs únicos
 function criarIdUnico(base, index) {
@@ -100,6 +100,7 @@ function configurarEventos() {
             e.preventDefault();
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             e.target.classList.add('active');
+            
             const especialidade = e.target.dataset.especialidade;
             document.querySelectorAll('.especialidade-section').forEach(section => {
                 section.classList.remove('active');
@@ -108,7 +109,7 @@ function configurarEventos() {
         }
     });
     
-    // Seleção de cirurgias (corrigido)
+    // Seleção de cirurgias (com ordenação para descontos)
     document.addEventListener('change', (e) => {
         if (e.target.classList.contains('cirurgia-checkbox')) {
             const checkbox = e.target;
@@ -122,7 +123,8 @@ function configurarEventos() {
                 cirurgiasSelecionadas = cirurgiasSelecionadas.filter(item => item.id !== cirurgiaId);
             }
             
-            console.log('Cirurgias selecionadas:', cirurgiasSelecionadas); // Debug
+            // Ordena do maior para o menor valor (para aplicar descontos corretamente)
+            cirurgiasSelecionadas.sort((a, b) => b.valor - a.valor);
             atualizarOrcamento();
         }
     });
@@ -138,9 +140,9 @@ function configurarEventos() {
         }
     });
     
-    // Gerar PDF (corrigido: passa o array explicitamente)
+    // Gerar PDF (com array explícito)
     document.getElementById('gerar-pdf').addEventListener('click', () => {
-        gerarPDF(cirurgiasSelecionadas);
+        gerarPDF([...cirurgiasSelecionadas]); // Passa uma cópia do array
     });
 }
 
