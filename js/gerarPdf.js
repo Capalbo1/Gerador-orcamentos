@@ -1,3 +1,6 @@
+// Adicione esta importação no início do arquivo
+import { calcularValorComDesconto } from './calcularConta.js';
+
 export function gerarPDF(cirurgiasSelecionadas) {
     if (!cirurgiasSelecionadas || cirurgiasSelecionadas.length === 0) {
         alert('Por favor, selecione pelo menos uma cirurgia para gerar o orçamento.');
@@ -12,8 +15,8 @@ export function gerarPDF(cirurgiasSelecionadas) {
     doc.setTextColor(0, 102, 204);
     doc.text('Orçamento Cirúrgico', 105, 20, { align: 'center' });
     
-    // Cirurgias com descontos (usa a função importada)
-    const cirurgiasComDesconto = calcularValorComDesconto();
+    // Cirurgias com descontos (agora usando a função importada)
+    const cirurgiasComDesconto = calcularValorComDesconto(cirurgiasSelecionadas); // Passe o array como parâmetro
     let y = 50;
     
     cirurgiasComDesconto.forEach((cirurgia, index) => {

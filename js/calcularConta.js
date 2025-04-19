@@ -2,7 +2,8 @@
 let cirurgiasSelecionadas = []; // Será preenchido pelo main.js
 
 // Função para calcular descontos (MANTIDA)
-export function calcularValorComDesconto() {
+// Modifique a função para receber o array como parâmetro
+export function calcularValorComDesconto(cirurgiasSelecionadas) {
     return cirurgiasSelecionadas.map((cirurgia, index) => {
         let percentual = 1.0;
         if (index === 1) percentual = 0.7;
