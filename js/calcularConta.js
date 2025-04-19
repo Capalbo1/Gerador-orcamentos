@@ -1,55 +1,47 @@
-// Remova a importação de './data.js' (usaremos o array global de main.js)
-let cirurgiasSelecionadas = []; // Será preenchido pelo main.js
-
-// Função para calcular descontos (MANTIDA)
-// Modifique a função para receber o array como parâmetro
-export function calcularValorComDesconto(cirurgiasSelecionadas) {
-    return cirurgiasSelecionadas.map((cirurgia, index) => {
+// calcularConta.js - Versão Corrigida
+export function calcularValorComDesconto(cirurgias) {
+    return cirurgias.map((cirurgia, index) => {
         let percentual = 1.0;
-        if (index === 1) percentual = 0.7;
-        if (index >= 2) percentual = 0.5;
+        if (index === 1) percentual = 0.7;  // 30% de desconto
+        if (index >= 2) percentual = 0.5;   // 50% de desconto
         
         return {
             ...cirurgia,
             valorComDesconto: cirurgia.valor * percentual,
-            percentualAplicado: Math.round(percentual * 100),
-            ordemSelecao: index
+            percentualAplicado: Math.round(percentual * 100)
         };
     });
 }
 
-// Atualiza o orçamento (MANTIDA)
-export function atualizarOrcamento() {
+// Modifique a função para receber explicitamente o array
+export function atualizarOrcamento(cirurgias) {
     const container = document.getElementById('cirurgias-selecionadas');
+    const totalElement = document.getElementById('total-orcamento');
     
-    if (cirurgiasSelecionadas.length === 0) {
+    if (!cirurgias || cirurgias.length === 0) {
         container.innerHTML = '<p class="nenhuma-selecionada">Nenhuma cirurgia selecionada ainda</p>';
-        document.getElementById('total-orcamento').textContent = 'R$ 0,00';
-        return 0;
+        totalElement.textContent = 'R$ 0,00';
+        return;
     }
 
-    container.innerHTML = '';
-    const cirurgiasComDesconto = calcularValorComDesconto();
+    const cirurgiasComDesconto = calcularValorComDesconto(cirurgias);
     let total = 0;
     
-    cirurgiasComDesconto.forEach((cirurgia, index) => {
+    container.innerHTML = cirurgiasComDesconto.map((cirurgia, index) => {
         total += cirurgia.valorComDesconto;
-        
-        const div = document.createElement('div');
-        div.className = 'cirurgia-selecionada';
-        div.innerHTML = `
-            <div>
-                <span>${cirurgia.nome}</span>
-                ${index > 0 ? `<span class="desconto-badge">-${100 - cirurgia.percentualAplicado}%</span>` : ''}
-            </div>
-            <div>
-                ${index > 0 ? `<span class="valor-original">R$ ${cirurgia.valor.toFixed(2).replace('.', ',')}</span>` : ''}
-                <span>R$ ${cirurgia.valorComDesconto.toFixed(2).replace('.', ',')}</span>
+        return `
+            <div class="cirurgia-selecionada">
+                <div>
+                    <span>${cirurgia.nome}</span>
+                    ${index > 0 ? `<span class="desconto-badge">-${100 - cirurgia.percentualAplicado}%</span>` : ''}
+                </div>
+                <div>
+                    ${index > 0 ? `<span class="valor-original">R$ ${cirurgia.valor.toFixed(2).replace('.', ',')}</span>` : ''}
+                    <span>R$ ${cirurgia.valorComDesconto.toFixed(2).replace('.', ',')}</span>
+                </div>
             </div>
         `;
-        container.appendChild(div);
-    });
+    }).join('');
     
-    document.getElementById('total-orcamento').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    return total;
+    totalElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }

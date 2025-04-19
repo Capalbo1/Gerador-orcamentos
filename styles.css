@@ -282,3 +282,18 @@ main {
         align-self: flex-end;
     }
 }
+
+.desconto-badge {
+    background: #ffeb3b;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.valor-original {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+    font-size: 0.9em;
+}

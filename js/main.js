@@ -109,7 +109,6 @@ function configurarEventos() {
         }
     });
     
-    // Seleção de cirurgias (com ordenação para descontos)
     document.addEventListener('change', (e) => {
         if (e.target.classList.contains('cirurgia-checkbox')) {
             const checkbox = e.target;
@@ -123,9 +122,9 @@ function configurarEventos() {
                 cirurgiasSelecionadas = cirurgiasSelecionadas.filter(item => item.id !== cirurgiaId);
             }
             
-            // Ordena do maior para o menor valor (para aplicar descontos corretamente)
             cirurgiasSelecionadas.sort((a, b) => b.valor - a.valor);
-            atualizarOrcamento();
+            // Passe o array como argumento:
+            atualizarOrcamento([...cirurgiasSelecionadas]);
         }
     });
     
