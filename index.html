@@ -5,142 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Orçamentos Cirúrgicos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="assets/logob.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <img src="logob.png" alt="Logo Clínica">
+        <img src="assets/logob.png" alt="Logo Clínica">
         <h1>Gerador de Orçamentos Cirúrgicos</h1>
     </header>
     
     <h2>Escolha sua especialidade cirúrgica</h2>
     
     <nav id="especialidades-nav">
-        <a href="#" class="nav-link active" data-especialidade="parto">Parto</a>
-        <a href="#" class="nav-link" data-especialidade="gineco">Gineco</a>
-        <a href="#" class="nav-link" data-especialidade="geral">Geral</a>
-        <a href="#" class="nav-link" data-especialidade="plastica">Plástica</a>
-        <a href="#" class="nav-link" data-especialidade="urologia">Urologia</a>
-        <a href="#" class="nav-link" data-especialidade="hemoterapia">Hemoterapia</a>
-        <a href="#" class="nav-link" data-especialidade="oftalmo">Oftalmo</a>
+        <!-- As categorias serão carregadas dinamicamente via JavaScript -->
     </nav>
     
     <main>
-        <!-- Seção de Parto -->
-        <section id="parto" class="especialidade-section active">
-            <h3><i class="fas fa-baby"></i> Cirurgias de Parto</h3>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="parto-normal" data-valor="5000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Parto Normal (feto único) </div>
-                    <div class="cirurgia-descricao">Parto vaginal sem complicações</div>
-                    <div class="cirurgia-valor">R$ 3.000,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="parto-normal">Detalhes</button>
-            </div>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="cesariana" data-valor="8000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Parto Cesárea</div>
-                    <div class="cirurgia-descricao">Parto cirúrgico</div>
-                    <div class="cirurgia-valor">R$ 3.000,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="cesariana">Detalhes</button>
-            </div>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="cesariana" data-valor="8000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Parto Cesariana + Laqueadura</div>
-                    <div class="cirurgia-descricao">Parto cirúrgico com a colocação </div>
-                    <div class="cirurgia-valor">R$ 4.200,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="cesariana">Detalhes</button>
-            </div>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="cesariana" data-valor="8000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Parto Ectópica</div>
-                    <div class="cirurgia-descricao">Parto cirúrgico</div>
-                    <div class="cirurgia-valor">R$ 3.000,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="cesariana">Detalhes</button>
-            </div>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="cesariana" data-valor="8000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Laqueadura</div>
-                    <div class="cirurgia-descricao">Colocação</div>
-                    <div class="cirurgia-valor">R$ 2.880,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="cesariana">Detalhes</button>
-            </div>
-        </section>
-
-        <!-- Seção de Ginecologia -->
-        <section id="gineco" class="especialidade-section">
-            <h3><i class="fas fa-female"></i> Cirurgias Ginecológicas</h3>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="histerectomia" data-valor="12000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Histerectomia</div>
-                    <div class="cirurgia-descricao">Remoção do útero</div>
-                    <div class="cirurgia-valor">R$ 12.000,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="histerectomia">Detalhes</button>
-            </div>
-        </section>
-
-        <!-- Seção de Cirurgia Geral -->
-        <section id="geral" class="especialidade-section">
-            <h3><i class="fas fa-procedures"></i> Cirurgias Gerais</h3>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="apendicectomia" data-valor="7000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Apendicectomia</div>
-                    <div class="cirurgia-descricao">Remoção do apêndice</div>
-                    <div class="cirurgia-valor">R$ 7.000,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="apendicectomia">Detalhes</button>
-            </div>
-        </section>
-
-        <!-- Seção de Cirurgia Plástica -->
-        <section id="plastica" class="especialidade-section">
-            <h3><i class="fas fa-hand-holding-medical"></i> Cirurgias Plásticas</h3>
-            <div class="cirurgia-item">
-                <input type="checkbox" class="cirurgia-checkbox" id="mamoplastia" data-valor="15000">
-                <div class="cirurgia-info">
-                    <div class="cirurgia-nome">Mamoplastia</div>
-                    <div class="cirurgia-descricao">Cirurgia de aumento/redução de mama</div>
-                    <div class="cirurgia-valor">R$ 15.000,00</div>
-                </div>
-                <button class="detalhes-btn" data-cirurgia="mamoplastia">Detalhes</button>
-            </div>
-        </section>
-
-        <!-- Seção de Urologia -->
-        <section id="urologia" class="especialidade-section">
-            <h3><i class="fas fa-male"></i> Cirurgias Urológicas</h3>
-            <!-- Itens de cirurgia aqui -->
-        </section>
-
-        <!-- Seção de Hemoterapia -->
-        <section id="hemoterapia" class="especialidade-section">
-            <h3><i class="fas fa-tint"></i> Cirurgias de Hemoterapia</h3>
-            <!-- Itens de cirurgia aqui -->
-        </section>
-
-        <!-- Seção de Oftalmologia -->
-        <section id="oftalmo" class="especialidade-section">
-            <h3><i class="fas fa-eye"></i> Cirurgias Oftalmológicas</h3>
-            <!-- Itens de cirurgia aqui -->
-        </section>
-
+        <!-- As seções de cirurgias serão criadas dinamicamente -->
+        
         <!-- Painel de Orçamento -->
         <div class="orcamento-container">
             <h3>Seu Orçamento</h3>
             <div class="cirurgias-selecionadas" id="cirurgias-selecionadas">
-                <!-- Itens selecionados aparecerão aqui -->
                 <p class="nenhuma-selecionada">Nenhuma cirurgia selecionada ainda</p>
             </div>
             <div class="total-container">
@@ -178,8 +64,11 @@
         </div>
     </main>
 
+    <!-- Bibliotecas para gerar PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="script.js"></script>
+    
+    <!-- Seu JavaScript principal -->
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>
